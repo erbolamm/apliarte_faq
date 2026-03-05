@@ -13,6 +13,6 @@
 * 🎨 Soporte para temas (claro/oscuro)
 * ⚙️ Personalización de colores y textos
 * 📖 Parser de Markdown para secciones FAQ
-- Chat UI con burbujas, sugerencias y theming
-- Botón flotante con animación de pulso
-- 100% offline, sin dependencias externas
+* Chat UI con burbujas, sugerencias y theming
+* Botón flotante con animación de pulso
+* 100% offline, sin dependencias externas

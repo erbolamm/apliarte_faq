@@ -2,6 +2,8 @@
 
 Asistente FAQ offline para apps Flutter. Responde preguntas de usuarios desde un archivo `.md`. 100% offline, sin IA, sin dependencias externas.
 
+**[🚀 Probar demo online](https://erbolamm.github.io/apliarte_faq/)**
+
 ## Instalación
 
 ```yaml

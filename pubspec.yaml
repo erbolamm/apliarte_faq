@@ -2,6 +2,7 @@ name: apliarte_faq
 description: Asistente FAQ offline para apps Flutter. Responde preguntas de usuarios desde un archivo .md. 100% offline, sin IA, sin dependencias externas.
 version: 1.0.1
 homepage: https://github.com/erbolamm/apliarte_faq
+repository: https://github.com/erbolamm/apliarte_faq
 
 environment:
   sdk: '>=3.0.0 <4.0.0'

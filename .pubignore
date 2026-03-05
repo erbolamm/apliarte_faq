@@ -1,0 +1,16 @@
+# Build artifacts
+build/
+.dart_tool/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Internal docs (not for pub.dev)
+CONTEXTO_DESARROLLO.md
+GEMINI.md
+
+# OS files
+.DS_Store
+*.swp

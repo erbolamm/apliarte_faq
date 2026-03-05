@@ -1,0 +1,16 @@
+# Dart/Flutter
+.dart_tool/
+build/
+pubspec.lock
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+*.swp
+
+# Internal docs (local only)
+CONTEXTO_DESARROLLO.md

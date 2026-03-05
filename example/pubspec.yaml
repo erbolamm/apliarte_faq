@@ -1,0 +1,16 @@
+name: apliarte_faq_example
+description: Ejemplo de uso del paquete apliarte_faq.
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  apliarte_faq:
+    path: ../
+
+flutter:
+  assets:
+    - assets/ayuda.md

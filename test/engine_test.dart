@@ -59,43 +59,87 @@ Más contenido.
       const md = '''
 ## Cómo empezar
 
-Para empezar a usar la app, abre el menú principal.
+Para empezar a usar la app, abre el menú principal y selecciona
+la opción que necesites. El proceso es muy sencillo.
 
-## Cómo guardar
+## Cómo guardar mis datos
 
-Tus datos se guardan automáticamente.
+Tus datos se guardan automáticamente cada vez que haces un cambio.
+No necesitas pulsar ningún botón de guardar.
 
-## Contactar soporte
+## Contactar soporte técnico
 
-Escríbenos a soporte@apliarte.com.
+Escríbenos a soporte@apliarte.com o visita nuestra web.
+Respondemos en menos de 24 horas.
+
+## La app funciona sin internet
+
+Sí, la aplicación funciona completamente offline.
+Solo necesitas internet para sincronizar datos con la nube.
 ''';
       engine = FaqEngine.fromString(md);
     });
 
     test('tiene el número correcto de secciones', () {
-      expect(engine.sectionCount, 3);
+      expect(engine.sectionCount, 4);
     });
 
-    test('busca secciones relevantes', () {
+    test('busca secciones por coincidencia exacta', () {
       final results = engine.search('empezar');
       expect(results, isNotEmpty);
       expect(results.first.section.title, contains('empezar'));
     });
 
-    test('devuelve respuesta formateada', () {
-      final answer = engine.answer('cómo empezar');
-      expect(answer, contains('empezar'));
+    test('busca sin importar acentos (cómo → como)', () {
+      final results = engine.search('como empezar');
+      expect(results, isNotEmpty);
+      expect(results.first.section.title.toLowerCase(), contains('empezar'));
     });
 
-    test('devuelve mensaje de no encontrado', () {
-      final answer = engine.answer('xyzabc123');
+    test('busca con errores tipográficos (fuzzy match)', () {
+      final results = engine.search('guarrdar datos');
+      expect(results, isNotEmpty);
+      expect(results.first.section.title.toLowerCase(), contains('guardar'));
+    });
+
+    test('busca con sinónimos parciales por stemming', () {
+      final results = engine.search('aplicacion offline');
+      expect(results, isNotEmpty);
+      // Debería encontrar la sección sobre funcionar sin internet
+    });
+
+    test('devuelve respuesta formateada con emoji', () {
+      final answer = engine.answer('cómo empiezo');
+      expect(answer, isNotEmpty);
+      expect(answer, isNot(contains('No he encontrado')));
+    });
+
+    test('devuelve mensaje de no encontrado para basura', () {
+      final answer = engine.answer('xyzabc123 qwerty asdf');
       expect(answer, contains('No he encontrado'));
     });
 
-    test('genera sugerencias', () {
+    test('genera sugerencias con formato de pregunta', () {
       final suggestions = engine.suggestions;
       expect(suggestions, isNotEmpty);
-      expect(suggestions.first, contains('?'));
+      expect(suggestions.length, lessThanOrEqualTo(5));
+      for (final s in suggestions) {
+        expect(s, contains('?'));
+        expect(s, startsWith('¿'));
+      }
+    });
+
+    test('no devuelve resultados para query vacía', () {
+      final results = engine.search('');
+      expect(results, isEmpty);
+      final results2 = engine.search('   ');
+      expect(results2, isEmpty);
+    });
+
+    test('respuesta de alta confianza es directa', () {
+      final answer = engine.answer('guardar datos');
+      expect(answer, contains('📌'));
+      expect(answer, contains('guardar'));
     });
   });
 }

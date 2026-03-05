@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../engine/faq_engine.dart';
+import '../engine/faq_locale.dart';
 import 'faq_chat.dart';
 import 'faq_theme.dart';
 
@@ -33,6 +34,9 @@ class ApliFaqButton extends StatefulWidget {
   /// Tema completo del chat (override de [themeColor]).
   final ApliFaqTheme? theme;
 
+  /// Idioma del asistente (textos UI + stopwords de búsqueda).
+  final FaqLocale? locale;
+
   /// Altura del bottom sheet (0.0 a 1.0).
   final double sheetHeight;
 
@@ -42,6 +46,7 @@ class ApliFaqButton extends StatefulWidget {
     required this.appName,
     this.themeColor,
     this.theme,
+    this.locale,
     this.sheetHeight = 0.85,
   });
 
@@ -74,7 +79,10 @@ class _ApliFaqButtonState extends State<ApliFaqButton>
   Future<void> _loadEngine() async {
     setState(() => _loading = true);
     try {
-      _engine = await FaqEngine.fromAsset(widget.markdownAsset);
+      _engine = await FaqEngine.fromAsset(
+        widget.markdownAsset,
+        locale: widget.locale,
+      );
     } catch (e) {
       debugPrint('ApliFaqButton: Error loading FAQ: $e');
     }
@@ -85,8 +93,22 @@ class _ApliFaqButtonState extends State<ApliFaqButton>
 
   ApliFaqTheme get _effectiveTheme {
     if (widget.theme != null) return widget.theme!;
+    final locale = widget.locale;
+    if (widget.themeColor != null && locale != null) {
+      return ApliFaqTheme(
+        primaryColor: widget.themeColor!,
+        hintText: locale.hintText,
+        greetingText: locale.greeting,
+      );
+    }
     if (widget.themeColor != null) {
       return ApliFaqTheme(primaryColor: widget.themeColor!);
+    }
+    if (locale != null) {
+      return ApliFaqTheme(
+        hintText: locale.hintText,
+        greetingText: locale.greeting,
+      );
     }
     return const ApliFaqTheme();
   }

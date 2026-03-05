@@ -2,17 +2,38 @@
 
 Asistente FAQ offline para apps Flutter. Responde preguntas de usuarios desde un archivo `.md`. 100% offline, sin IA, sin dependencias externas.
 
-**[🚀 Probar demo online](https://erbolamm.github.io/apliarte_faq/)**
+[![pub package](https://img.shields.io/pub/v/apliarte_faq.svg)](https://pub.dev/packages/apliarte_faq)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## Instalación
+## ✨ Características
+
+- **100% Offline** — No necesita internet, IA ni servidores externos
+- **Cero dependencias** — Solo Flutter, nada más
+- **Privacidad total** — Los datos nunca salen del dispositivo
+- **Motor TF-IDF** — Búsqueda inteligente con fuzzy matching y normalización de acentos
+- **Markdown renderer** — Renderiza **negrita**, *cursiva*, `código`, bullets y listas
+- **17 idiomas** — Soporte multilingüe de serie
+
+## 🌍 Idiomas soportados
+
+| | | | |
+|---|---|---|---|
+| 🇪🇸 Español | 🇬🇧 English | 🇫🇷 Français | 🇩🇪 Deutsch |
+| 🇧🇷 Português | 🇮🇹 Italiano | 🇷🇺 Русский | 🇨🇳 中文 |
+| 🇯🇵 日本語 | 🇰🇷 한국어 | 🇸🇦 العربية | 🇮🇳 हिन्दी |
+| 🇹🇷 Türkçe | 🇵🇱 Polski | 🇻🇳 Tiếng Việt | 🇮🇩 Bahasa |
+| 🇮🇷 فارسی | | | |
+
+Cada idioma incluye: textos del UI traducidos, stopwords optimizados para búsqueda, y detección automática del idioma del dispositivo.
+
+## 🚀 Instalación
 
 ```yaml
 dependencies:
-  apliarte_faq:
-    path: ../apliarte_faq  # o desde pub.dev cuando se publique
+  apliarte_faq: ^1.0.1
 ```
 
-## Uso rápido
+## 📱 Uso rápido
 
 ```dart
 import 'package:apliarte_faq/apliarte_faq.dart';
@@ -26,54 +47,106 @@ Scaffold(
 );
 ```
 
-## Personalización
+¡Eso es todo! Tu app ahora tiene un asistente FAQ con solo 3 líneas.
+
+## 🌍 Uso multilingüe
+
+```dart
+// Inglés
+ApliFaqButton(
+  markdownAsset: 'assets/help_en.md',
+  appName: 'MyApp',
+  locale: FaqLocale.en,
+)
+
+// Japonés
+ApliFaqButton(
+  markdownAsset: 'assets/help_ja.md',
+  appName: 'マイアプリ',
+  locale: FaqLocale.ja,
+)
+
+// Auto-detectar idioma del dispositivo
+ApliFaqButton(
+  markdownAsset: 'assets/help.md',
+  appName: 'MyApp',
+  locale: FaqLocale.fromCode(Platform.localeName),
+)
+```
+
+## 🎨 Personalización
 
 ```dart
 ApliFaqButton(
   markdownAsset: 'assets/ayuda.md',
   appName: 'MiApp',
-  themeColor: Colors.blue,           // Color personalizado
-  theme: ApliFaqTheme.dark(),        // O tema completo
-  sheetHeight: 0.9,                  // Altura del chat
+  theme: ApliFaqTheme(
+    primaryColor: Colors.teal,
+    backgroundColor: Color(0xFFF0F4F8),
+    bubbleRadius: 20.0,
+    fabIcon: Icons.help_outline,
+  ),
 );
 ```
 
-## Cómo funciona
+### Tema oscuro
 
-1. Parsea tu archivo `.md` dividiéndolo por secciones (`##`)
-2. Construye un índice TF-IDF con el contenido
-3. Cuando el usuario pregunta, busca las secciones más relevantes
-4. Muestra la respuesta en un chat bonito
+```dart
+ApliFaqButton(
+  markdownAsset: 'assets/ayuda.md',
+  appName: 'MiApp',
+  theme: ApliFaqTheme.dark(),
+);
+```
 
-## 💛 Apoyar y Compartir
+## 🔧 Uso avanzado
 
-**Sé parte del cambio. Compártelo y haz que llegue a quien lo necesite.**
+```dart
+// Motor directo (sin UI)
+final engine = await FaqEngine.fromAsset(
+  'assets/ayuda.md',
+  locale: FaqLocale.fr,
+);
 
-Un programador español ha creado este paquete para que **CUALQUIER app Flutter** pueda tener un asistente FAQ privado, offline y gratuito. Sin big tech, sin suscripciones, sin datos en la nube. **Cada café que invitas** es combustible para seguir creando algo que el mundo necesita.
+final results = engine.search('mon problème');
+final answer = engine.answer('comment faire');
+```
 
-- [☕ Apoyar en Ko-fi (Desde 3€)](https://ko-fi.com/C0C11TWR1K)
-- [💙 Donar con PayPal (Libre)](https://www.paypal.com/paypalme/erbolamm)
+## 📝 Cómo escribir el archivo .md
 
----
+Cada sección `##` se convierte en una respuesta independiente:
 
-### 💥 Compártelo. Que se entere todo el mundo
+```markdown
+# Mi App — Ayuda
 
-- [𝕏 Compartir en Twitter / X](https://twitter.com/intent/tweet?text=Mira%20este%20paquete%20para%20Flutter%3A%20un%20asistente%20FAQ%20offline%2C%20privado%20y%20gratis.%20Perfecto%20para%20cualquier%20app.%20%23FlutterDev%20%23Dart%20%40erbolamm%0A%0Ahttps%3A%2F%2Fpub.dev%2Fpackages%2Fapliarte_faq)
-- [💼 Compartir en LinkedIn](https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fpub.dev%2Fpackages%2Fapliarte_faq)
-- [💬 Compartir en WhatsApp](https://wa.me/?text=Mira%20este%20paquete%20para%20Flutter%3A%20un%20asistente%20FAQ%20offline%2C%20privado%20y%20gratis.%20Perfecto%20para%20cualquier%20app.%20%0A%0Ahttps%3A%2F%2Fpub.dev%2Fpackages%2Fapliarte_faq)
-- [✈️ Compartir en Telegram](https://t.me/share/url?url=https%3A%2F%2Fpub.dev%2Fpackages%2Fapliarte_faq&text=Un%20asistente%20FAQ%20offline%20para%20Flutter.%20Privado%20y%20gratis.)
-- [📧 Compartir por Email](mailto:?subject=Paquete%20asistente%20FAQ%20offline%20para%20Flutter&body=Mira%20este%20paquete%20que%20convierte%20cualquier%20app%20en%20un%20asistente%20FAQ%20privado%20sin%20internet%3A%20https%3A%2F%2Fpub.dev%2Fpackages%2Fapliarte_faq)
+## Cómo empezar
+Descarga la app y crea una cuenta...
 
----
+## Cómo contactar soporte
+Escríbenos a soporte@miapp.com...
+```
 
-## 🌐 Autor y Enlaces
+## 📦 Estructura del paquete
 
-Esto lo está construyendo **una sola persona**, sin empresa detrás, sin inversores, sin equipo de marketing. Solo un programador español que cree que la tecnología debe ser accesible para todos.
+| Componente | Descripción |
+|---|---|
+| `ApliFaqButton` | FAB con animación de pulso que abre el chat |
+| `ApliFaqChat` | Widget de chat completo con sugerencias |
+| `FaqEngine` | Motor de búsqueda TF-IDF + respuestas |
+| `FaqLocale` | Soporte multilingüe (17 idiomas) |
+| `ApliFaqTheme` | Personalización visual completa |
+| `SimpleMarkdown` | Renderer de Markdown ligero sin dependencias |
 
-- [𝕏 Seguir @erbolamm](https://twitter.com/erbolamm)
-- [👤 GitHub: erbolamm](https://github.com/erbolamm)
-- [🌐 ApliArte.com](https://apliarte.com)
+## 👨‍💻 Creado por
 
-> "O se gana, o se aprende" — El lema que mantiene vivo este proyecto.
+**Javier Mateo** (erbolamm) — [ApliArte.com](https://www.apliarte.com)
 
-> 🦀 Creado con ❤️ por Francisco de [ApliArte.com](https://apliarte.com) · España · 2026
+- [GitHub](https://github.com/erbolamm)
+- [X/Twitter](https://twitter.com/erbolamm)
+
+*"O se gana, o se aprende"*
+
+## ☕ Apoya el proyecto
+
+- [Ko-fi (desde 3€)](https://ko-fi.com/C0C11TWR1K)
+- [PayPal](https://www.paypal.com/paypalme/erbolamm)

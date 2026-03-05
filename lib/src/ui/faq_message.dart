@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../engine/models.dart';
 import 'faq_theme.dart';
+import 'simple_markdown.dart';
 
 /// Widget de burbuja de mensaje en el chat FAQ.
 class FaqMessageBubble extends StatelessWidget {
@@ -59,16 +60,23 @@ class FaqMessageBubble extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Text(
-                message.text,
-                style: TextStyle(
-                  color: isUser
-                      ? theme.userTextColor
-                      : theme.assistantTextColor,
-                  fontSize: 14,
-                  height: 1.4,
-                ),
-              ),
+              child: isUser
+                  ? Text(
+                      message.text,
+                      style: TextStyle(
+                        color: theme.userTextColor,
+                        fontSize: 14,
+                        height: 1.4,
+                      ),
+                    )
+                  : SimpleMarkdown(
+                      data: message.text,
+                      baseStyle: TextStyle(
+                        color: theme.assistantTextColor,
+                        fontSize: 14,
+                        height: 1.4,
+                      ),
+                    ),
             ),
           ),
           if (isUser) const SizedBox(width: 8),

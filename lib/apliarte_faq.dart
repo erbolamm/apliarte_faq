@@ -19,8 +19,11 @@
 library apliarte_faq;
 
 export 'src/engine/faq_engine.dart';
+export 'src/engine/faq_locale.dart';
 export 'src/engine/models.dart';
 export 'src/engine/markdown_parser.dart';
 export 'src/ui/faq_button.dart';
 export 'src/ui/faq_chat.dart';
+export 'src/ui/faq_message.dart';
 export 'src/ui/faq_theme.dart';
+export 'src/ui/simple_markdown.dart';

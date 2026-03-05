@@ -12,5 +12,6 @@ dependencies:
     path: ../
 
 flutter:
+  uses-material-design: true
   assets:
     - assets/ayuda.md

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3
+
+* 🔗 Añadido enlace a la Demo Web en vivo desde el README en pub.dev
+
 ## 1.0.2
 
 * 🌍 **17 idiomas** — Soporte multilingüe: es, en, fr, de, pt, it, ru, zh, ja, ko, ar, hi, tr, pl, vi, id, fa

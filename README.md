@@ -4,6 +4,7 @@ Asistente FAQ offline para apps Flutter. Responde preguntas de usuarios desde un
 
 [![pub package](https://img.shields.io/pub/v/apliarte_faq.svg)](https://pub.dev/packages/apliarte_faq)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Demo Web](https://img.shields.io/badge/Demo-Mirar%20en%20vivo-purple?style=for-the-badge)](https://erbolamm.github.io/apliarte_faq/)
 
 ## ✨ Características
 

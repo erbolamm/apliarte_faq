@@ -242,7 +242,7 @@ class _OverviewPage extends StatelessWidget {
                 style: TextStyle(color: Colors.white60, fontSize: 13), textAlign: TextAlign.center),
             const SizedBox(height: 20),
             Wrap(spacing: 8, runSpacing: 8, alignment: WrapAlignment.center, children: [
-              _badge('v1.0.5', const Color(0xFF22C55E)),
+              _badge('v1.0.6', const Color(0xFF22C55E)),
               _badge('Offline', const Color(0xFF6366F1)),
               _badge('17 idiomas', const Color(0xFFF59E0B)),
               _badge('TF-IDF', const Color(0xFF8B5CF6)),
@@ -270,6 +270,50 @@ class _OverviewPage extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(child: _MiniCard(Icons.auto_fix_high, 'TF-IDF', 'Fuzzy matching + acentos')),
         ]),
+        const SizedBox(height: 12),
+        // AI mode card
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                const Color(0xFF6C5CE7).withValues(alpha: 0.12),
+                const Color(0xFF3B82F6).withValues(alpha: 0.06),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: const Color(0xFF6C5CE7).withValues(alpha: 0.2),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(children: [
+                Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF6C5CE7).withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(Icons.auto_awesome, size: 16, color: Color(0xFF6C5CE7)),
+                ),
+                const SizedBox(width: 10),
+                const Text('Modo IA opcional',
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15)),
+              ]),
+              const SizedBox(height: 8),
+              const Text(
+                'El usuario puede elegir entre respuestas mecánicas (TF-IDF) '
+                'o conectar un modelo de IA local. El callback FaqAiCallback '
+                'permite a los desarrolladores conectar Ollama, LM Studio, '
+                'o un VPS propio. O descargar modelos ONNX localmente.',
+                style: TextStyle(fontSize: 13, color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
         // Demo en vivo
         const SizedBox(height: 32),
         Text('Demo en vivo',
@@ -380,6 +424,7 @@ class _FeaturesPage extends StatelessWidget {
           _featureRow('Motor TF-IDF — Búsqueda inteligente con fuzzy matching', Icons.auto_fix_high),
           _featureRow('Markdown renderer — Texto formateado con negritas, bullets, código', Icons.article),
           _featureRow('17 idiomas — UI y stopwords traducidos', Icons.language),
+          _featureRow('IA opcional — FaqAiCallback + modo hybrid/aiOnly', Icons.auto_awesome),
           _featureRow('Personalizable — Colores, textos, tema claro/oscuro', Icons.palette),
         ]),
       )),
@@ -492,6 +537,66 @@ class _UsagePage extends StatelessWidget {
         ]),
       )),
       const SizedBox(height: 16),
+      Card(child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const Row(children: [
+            Icon(Icons.auto_awesome, size: 20, color: Color(0xFF6C5CE7)),
+            SizedBox(width: 8),
+            Text('IA opcional (FaqAiCallback)',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          ]),
+          const SizedBox(height: 8),
+          const Text(
+            'El usuario puede elegir entre respuestas mecánicas o conectar '
+            'un modelo de IA local. Implementá tu propio callback:',
+            style: TextStyle(fontSize: 13, color: Colors.grey),
+          ),
+          const SizedBox(height: 12),
+          Container(
+            width: double.infinity, padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: isDark ? const Color(0xFF1A1A2E) : const Color(0xFF1E1E2E),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              _CodeLine("// Conectá Ollama, LM Studio o tu VPS:"),
+              _CodeLine("Future<String> miAI(String q, List<String> ctx) async {"),
+              _CodeLine("  // http.post a tu endpoint..."),
+              _CodeLine("  return respuestaEnTexto;"),
+              _CodeLine("}"),
+              _CodeLine(''),
+              _CodeLine("ApliFaqButton("),
+              _CodeLine("  markdownAsset: 'assets/ayuda.md',"),
+              _CodeLine("  appName: 'Mi App',"),
+              _CodeLine("  aiCallback: miAI,"),
+              _CodeLine("  aiMode: FaqAiMode.hybrid, // IA + fallback TF-IDF"),
+              _CodeLine(")"),
+            ]),
+          ),
+          const SizedBox(height: 12),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              color: const Color(0xFF10B981).withValues(alpha: 0.08),
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: const Color(0xFF10B981).withValues(alpha: 0.2)),
+            ),
+            child: const Row(children: [
+              Icon(Icons.info_outline, size: 16, color: Color(0xFF10B981)),
+              SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  'Modos: mechanical (default), hybrid (IA+fallback), aiOnly',
+                  style: TextStyle(fontSize: 12, color: Color(0xFF10B981)),
+                ),
+              ),
+            ]),
+          ),
+        ]),
+      )),
+      const SizedBox(height: 16),
       SizedBox(
         width: double.infinity,
         child: FilledButton.icon(
@@ -518,7 +623,7 @@ class _CodeLine extends StatelessWidget {
 // ─────────────────────────────────────────────────────────────
 
 const _shareUrl = 'https://pub.dev/packages/apliarte_faq';
-const _shareText = 'apliarte_faq%20%E2%80%94%20Asistente%20FAQ%20offline%20para%20Flutter.%20100%25%20offline%2C%20sin%20IA%2C%20sin%20dependencias.';
+const _shareText = 'apliarte_faq%20%E2%80%94%20FAQ%20offline%20para%20Flutter%20con%20modo%20IA%20opcional.%20TF-IDF%20%2B%20FaqAiCallback.';
 
 class _ShareSection extends StatelessWidget {
   const _ShareSection();

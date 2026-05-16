@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../engine/faq_ai.dart';
 import '../engine/faq_engine.dart';
 import '../engine/faq_locale.dart';
 import 'faq_chat.dart';
@@ -7,18 +8,29 @@ import 'faq_theme.dart';
 
 /// Botón flotante que abre el chat FAQ.
 ///
-/// Es como un `FloatingActionButton` que al tocar abre un
-/// `showModalBottomSheet` con el chat completo.
+/// Por defecto usa el motor TF-IDF (offline, sin IA).
+/// Opcionalmente podés pasar un [aiCallback] para respuestas con IA
+/// (Ollama, LM Studio, o cualquier endpoint compatible).
 ///
-/// ## Uso
+/// ## Uso básico (TF-IDF)
 ///
 /// ```dart
 /// Scaffold(
-///   body: MiApp(),
 ///   floatingActionButton: ApliFaqButton(
 ///     markdownAsset: 'assets/ayuda.md',
-///     appName: 'CalcaApp',
+///     appName: 'MiApp',
 ///   ),
+/// );
+/// ```
+///
+/// ## Con IA opcional
+///
+/// ```dart
+/// ApliFaqButton(
+///   markdownAsset: 'assets/ayuda.md',
+///   appName: 'MiApp',
+///   aiCallback: miFuncionOllama,
+///   aiMode: FaqAiMode.hybrid,  // IA primero, TF-IDF como fallback
 /// );
 /// ```
 class ApliFaqButton extends StatefulWidget {
@@ -40,6 +52,19 @@ class ApliFaqButton extends StatefulWidget {
   /// Altura del bottom sheet (0.0 a 1.0).
   final double sheetHeight;
 
+  /// Callback opcional para respuestas con IA.
+  ///
+  /// Si se provee, el chat puede usar IA además del motor TF-IDF.
+  /// Ver [FaqAiCallback] para detalles de implementación.
+  final FaqAiCallback? aiCallback;
+
+  /// Modo de funcionamiento del asistente.
+  ///
+  /// - [FaqAiMode.mechanical]: solo TF-IDF (default).
+  /// - [FaqAiMode.hybrid]: IA primero, TF-IDF como fallback.
+  /// - [FaqAiMode.aiOnly]: solo IA (requiere [aiCallback]).
+  final FaqAiMode aiMode;
+
   const ApliFaqButton({
     super.key,
     required this.markdownAsset,
@@ -48,6 +73,8 @@ class ApliFaqButton extends StatefulWidget {
     this.theme,
     this.locale,
     this.sheetHeight = 0.85,
+    this.aiCallback,
+    this.aiMode = FaqAiMode.mechanical,
   });
 
   @override
@@ -126,6 +153,8 @@ class _ApliFaqButtonState extends State<ApliFaqButton>
           engine: _engine!,
           appName: widget.appName,
           theme: _effectiveTheme,
+          aiCallback: widget.aiCallback,
+          aiMode: widget.aiMode,
         ),
       ),
     );

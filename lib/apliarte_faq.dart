@@ -18,6 +18,7 @@
 /// ```
 library apliarte_faq;
 
+export 'src/engine/faq_ai.dart';
 export 'src/engine/faq_engine.dart';
 export 'src/engine/faq_locale.dart';
 export 'src/engine/models.dart';

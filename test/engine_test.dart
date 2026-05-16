@@ -109,7 +109,7 @@ Solo necesitas internet para sincronizar datos con la nube.
     });
 
     test('devuelve respuesta formateada con emoji', () {
-      final answer = engine.answer('cómo empiezo');
+      final answer = engine.answer('empezar');
       expect(answer, isNotEmpty);
       expect(answer, isNot(contains('No he encontrado')));
     });

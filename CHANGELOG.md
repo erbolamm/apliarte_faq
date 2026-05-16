@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.7
+
+* ✨ Modo IA opcional: `FaqAiCallback` para conectar modelos locales.
+* ✨ `FaqAiMode`: mechanical (default), hybrid (IA+fallback), aiOnly.
+* 📝 Web demo: sección IA + más colores.
+* 🐛 Fix: import no usado en faq_chat.dart.
+
+## 1.0.6
+
+* (versión saltada por error de CI)
+
 ## 1.0.5
 
 * CI/CD: workflow OIDC con publicación automática desde GitHub Actions.

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../engine/faq_ai.dart';
 import '../engine/faq_engine.dart';
 import '../engine/models.dart';
-import 'faq_message.dart';
 import 'faq_theme.dart';
 
 /// Widget de chat FAQ completo.

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.4
+
+* README: nuevas secciones "Apoya" (PayPal, Ko-fi, Twitch Tip) y "Comparte" (Twitter, LinkedIn, Reddit, WhatsApp).
+* Agregado flujo CI/CD con GitHub Actions para publicación automática.
+
 ## 1.0.3
 
 * 🔗 Añadido enlace a la Demo Web en vivo desde el README en pub.dev

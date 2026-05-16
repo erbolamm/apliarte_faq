@@ -138,16 +138,31 @@ Escríbenos a soporte@miapp.com...
 | `ApliFaqTheme` | Personalización visual completa |
 | `SimpleMarkdown` | Renderer de Markdown ligero sin dependencias |
 
-## 👨‍💻 Creado por
+## 💖 Apoya el proyecto
 
-**Javier Mateo** (erbolamm) — [ApliArte.com](https://www.apliarte.com)
+Si te ahorra tiempo, un café ayuda a mantener el desarrollo.
 
-- [GitHub](https://github.com/erbolamm)
-- [X/Twitter](https://twitter.com/erbolamm)
+| Plataforma | Enlace |
+|-----------|--------|
+| 💳 PayPal | [paypal.me/erbolamm](https://paypal.me/erbolamm) |
+| ☕ Ko-fi | [ko-fi.com/C0C11TWR1K](https://ko-fi.com/C0C11TWR1K) |
+| 📺 Twitch Tip | [streamelements.com/apliarte/tip](https://streamelements.com/apliarte/tip) |
 
-*"O se gana, o se aprende"*
+## 🔗 Comparte
 
-## ☕ Apoya el proyecto
+Ayudá a que más gente lo conozca:
 
-- [Ko-fi (desde 3€)](https://ko-fi.com/C0C11TWR1K)
-- [PayPal](https://www.paypal.com/paypalme/erbolamm)
+| Red | Enlace |
+|-----|--------|
+| 𝕏 Twitter | [Compartir](https://twitter.com/intent/tweet?text=apliarte_faq%20%E2%80%94%20Asistente%20FAQ%20offline%20para%20Flutter.%20100%25%20offline%2C%20sin%20IA%2C%20sin%20dependencias.&url=https://pub.dev/packages/apliarte_faq) |
+| 💼 LinkedIn | [Compartir](https://www.linkedin.com/sharing/share-offsite/?url=https://pub.dev/packages/apliarte_faq) |
+| 🟠 Reddit | [Compartir](https://www.reddit.com/submit?url=https://pub.dev/packages/apliarte_faq&title=apliarte_faq) |
+| 💬 WhatsApp | [Compartir](https://api.whatsapp.com/send?text=apliarte_faq%20-%20Asistente%20FAQ%20offline%20para%20Flutter.%20https://pub.dev/packages/apliarte_faq) |
+
+## Autor
+
+**Javier Mateo (ApliArte)** — [github.com/erbolamm](https://github.com/erbolamm)
+
+## Licencia
+
+MIT — © 2026 ApliArte

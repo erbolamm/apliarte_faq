@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.5
+
+* CI/CD: workflow OIDC con publicación automática desde GitHub Actions.
+
 ## 1.0.4
 
 * README: nuevas secciones "Apoya" (PayPal, Ko-fi, Twitch Tip) y "Comparte" (Twitter, LinkedIn, Reddit, WhatsApp).

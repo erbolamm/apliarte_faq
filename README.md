@@ -158,7 +158,7 @@ Ayudá a que más gente lo conozca:
 | 💼 LinkedIn | [Compartir](https://www.linkedin.com/sharing/share-offsite/?url=https://pub.dev/packages/apliarte_faq) |
 | 🟠 Reddit | [Compartir](https://www.reddit.com/submit?url=https://pub.dev/packages/apliarte_faq&title=apliarte_faq) |
 | 💬 WhatsApp | [Compartir](https://api.whatsapp.com/send?text=apliarte_faq%20-%20Asistente%20FAQ%20offline%20para%20Flutter.%20https://pub.dev/packages/apliarte_faq) |
-
+| 💬 Dsicord | [Compartir](https://discord.gg/v2BqUNBXrT) |
 ## Autor
 
 **Javier Mateo (ApliArte)** — [github.com/erbolamm](https://github.com/erbolamm)
